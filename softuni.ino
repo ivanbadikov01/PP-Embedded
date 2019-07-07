@@ -5,7 +5,7 @@ int ledNum;
 
 void setup() {
 
-  for(int i = 1; i<11; ++i){ //setting all of the pins connected to the LEDS as outputs
+  for(int i = 2; i<11; ++i){ //setting all of the pins connected to the LEDS as outputs
     pinMode(i, OUTPUT);
   }
   
@@ -25,7 +25,7 @@ void runLeft(){ //light runs to the left
   digitalWrite(ledNum, LOW);
   }
 }
-void runRight(){ //same as the last one but to the right
+void runRight(){ //light runs to the right
   for(ledNum = 10; ledNum>2; --ledNum){
   digitalWrite(ledNum, HIGH);
     nonBlockingDelay();
@@ -44,7 +44,7 @@ void winCondition(){ //checks if the winning conditions were met
   }
 }
 
-int detectButtonState(int bttnPin) { //detects if the button is pressed
+int detectButtonState(int bttnPin) { //detects if the button is pressed and not hold
   int buttonState = digitalRead(bttnPin);
   if(buttonState && comparePreviousButtonStates(previousButtonState1, previousButtonState2)){
     return 1;
@@ -78,7 +78,7 @@ void winScreen(){ //winning screen
   } 
 }
 
-bool comparePreviousButtonStates(bool a, bool b) {
+bool comparePreviousButtonStates(bool a, bool b) { //compares the previous states of the two buttons
   if (a == false && b == false) {
       return 1;
     }
